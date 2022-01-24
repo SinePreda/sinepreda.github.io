@@ -14,6 +14,12 @@ html, body {
     font-family: sans-serif;
     color: white;
     background-color: #120732;
+    animation: bodycolor 7s infinite;
+}
+@keyframes bodycolor {
+  0% {background-color: #120732}
+  50% {background-color: #121b72;}
+  100% {background-color: #120732}
 }
 canvas {
     opacity: 0;
@@ -32,6 +38,9 @@ h1 {
     transition: all 0.5s;
     opacity: 0;
 }
+h1:hover {
+  color: gray;
+}
 h2, p {
     padding-left: 10px;
 }
@@ -39,6 +48,17 @@ iframe {
     padding-left: 15px;
     opacity: 0;
     transition: all 0.4s;
+}
+p {
+  transition: all 0.2s;
+  max-width: 40%;
+  padding: 7px;
+  opacity: 0;
+  border-radius: 5px;
+}
+p:hover {
+  background: rgb(218, 218, 218);
+  color: black;
 }
 ::-webkit-scrollbar {width:15px;}
 ::-webkit-scrollbar-track {background:black}
@@ -71,20 +91,20 @@ var h2texts = [
 ];
 var ptexts = [
     "- A claim in argument form asserting policies or conditions that should be existent.",
-    "- Usually implies solution",
-    "- Usage of words 'ought to', 'must' and 'should'",
-    "- Involves sub claims of facts and values",
-    "- Data shows benefit of plan",
-    "- Usually procedural",
-    "- Based on facts",
-    "- Backed up by values",
-    "- Shows how the solution can solve the problem",
+    "- Usually implies solution.",
+    "- Usage of the words 'ought to', 'must' and 'should'.",
+    "- Involves sub claims of facts and values.",
+    "- Data shows benefit of plan.",
+    "- Usually procedural.",
+    "- Based on facts.",
+    "- Backed up by values.",
+    "- Shows how the solution can solve the problem.",
     "The death penalty should be abolished because it does nothing to prevent murder.",
     "Legislation should be passed to stop the sales of cigarettes to avoid further respiratory diseases.",
     "The age at which people can get a driver's license must be raised to 18 to ensure responsibility of the driver."
 ];
 var ih2 = [0, 0, 0, 0];
-var typingSpeed = 40, animDelay = 700;
+var typingSpeed = 40, animDelay = 800;
 function gTag(tag) {return document.getElementsByTagName(tag);}
 function oBlock(tag, n) {gTag(tag)[n].style.opacity = 1;}
 function typeH21() {
@@ -121,10 +141,16 @@ function firstAnim() {
 }
 function secondAnim() {
     typeH21();
-    typeH22();
-    typeH23();
-    typeH24();
-    setTimeout(thirdAnim, animDelay);
+    setTimeout(typeH22, 300);
+    setTimeout(typeH23, 600);
+    setTimeout(typeH24, 900);
+    setTimeout(function(){
+      var ps = gTag("p");
+      for (var i = 0; i < ps.length; i++) {
+        oBlock("p", i);
+      }
+    }, 1500);
+    setTimeout(thirdAnim, animDelay + 700);
 }
 function thirdAnim() {
     setTimeout(function(){gTag("p")[0].innerHTML = ptexts[0];}, 100);
@@ -231,7 +257,7 @@ function render(objects, ctx, dx, dy) {
   // Objects style
   var ctx = canvas.getContext('2d');
   ctx.strokeStyle = 'rgba(0, 0, 0, 1)';
-  ctx.fillStyle = 'rgba(0, 255, 150, 0.3)';
+  ctx.fillStyle = 'rgba(50, 150, 255, 0.2)';
 
   // Create the cube
   var cube_center = new Vertex(0, 11*dy/10, 0);
@@ -298,7 +324,7 @@ function render(objects, ctx, dx, dy) {
 
   function autorotate() {
     for (var i = 0; i < 8; ++i)
-      rotate(cube.vertices[i], cube_center, -Math.PI / 720, Math.PI / 720);
+      rotate(cube.vertices[i], cube_center, -Math.PI / 720, Math.PI / 700);
 
     render(objects, ctx, dx, dy);
 
