@@ -13,13 +13,13 @@ html, body {
     margin: 0;
     font-family: sans-serif;
     color: white;
-    background-color: #120732;
+    background-color: #15083b;
     animation: bodycolor 7s infinite;
 }
 @keyframes bodycolor {
-  0% {background-color: #120732}
-  50% {background-color: #121b72;}
-  100% {background-color: #120732}
+  0% {background-color: #15083b}
+  50% {background-color: #121b72}
+  100% {background-color: #15083b}
 }
 canvas {
     opacity: 0;
@@ -28,7 +28,7 @@ canvas {
     height: 100%;
     position: fixed;
     top: 0;
-    right: 0;
+    right: -70%;
 }
 h1, h2 {
     text-decoration: underline;
@@ -63,23 +63,51 @@ p:hover {
 ::-webkit-scrollbar {width:15px;}
 ::-webkit-scrollbar-track {background:black}
 ::-webkit-scrollbar-thumb {background:#ffffff;}
+.tooltip, .tooltipb, .tooltipc, .tooltipd {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltiptext, .tooltipb .tooltiptextb, .tooltipc .tooltiptextc, .tooltipd .tooltiptextd {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+.tooltip:hover .tooltiptext, .tooltipb:hover .tooltiptextb, .tooltipc:hover .tooltiptextc, .tooltipd:hover .tooltiptextd {
+  visibility: visible;
+}
 </style>
 </head>
 <body>
 <h1>CLAIM OF POLICY</h1>
-<h2></h2>
+<div class="tooltip"><h2></h2>
+  <span class="tooltiptext">The simplified description for what a Claim of Policy is.</span>
+</div>
 <p></p>
-<h2></h2>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<h2></h2>
+<div class="tooltipb"><h2></h2>
+  <span class="tooltiptextb">The basic characteristics for a Claim of Policy.</span>
+</div>
 <p></p>
 <p></p>
 <p></p>
-<h2></h2>
+<p></p>
+<p></p>
+<div class="tooltipc"><h2></h2>
+  <span class="tooltiptextc">Attributes you need in defending a Claim of Policy.</span>
+</div>
+<p></p>
+<p></p>
+<p></p>
+<div class="tooltipd"><h2></h2>
+  <span class="tooltiptextd">Examples of Claims of Policy.</span>
+</div>
 <p></p>
 <p></p>
 <p></p>
@@ -166,6 +194,7 @@ function thirdAnim() {
     setTimeout(function(){gTag("p")[10].innerHTML = ptexts[10];}, 1100);
     setTimeout(function(){gTag("p")[11].innerHTML = ptexts[11];}, 1200);
     setTimeout(function(){oBlock("canvas", 0); oBlock("iframe", 0)}, 1500);
+    setTimeout(function(){gTag("canvas")[0].style.right = "0";}, 2000);
 }
 setTimeout(firstAnim, animDelay);
 </script>
